@@ -1,5 +1,6 @@
 void putc(char c)
 {
+	/**(volatile char*)0x20000000 = c;*/
 	*(volatile char*)0x10000000 = c;
 }
 
@@ -40,5 +41,5 @@ void main()
 			break;
 		}
 	puts(message);
-	while(1)putc(0x55);
+	while(1)putc('B');
 }

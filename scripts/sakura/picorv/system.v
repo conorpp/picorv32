@@ -4,6 +4,8 @@ module system (
 	input            clk,
 	input            resetn,
 	input            [1:0]M_PUSHSW,
+    input            uart_rxd,
+    output           uart_txd,
 	output           trap,
 	output reg [7:0] out_byte,
 	output reg       out_byte_en,
@@ -23,14 +25,9 @@ module system (
 	wire [3:0] mem_wstrb;
 	reg [31:0] mem_rdata;
 
-	wire mem_la_read;
-	wire mem_la_write;
-	wire [31:0] mem_la_addr;
-	wire [31:0] mem_la_wdata;
-	wire [3:0] mem_la_wstrb;
-
     //wire [7:0] outb = (M_PUSHSW[0] == 1) ? (memory[mem_addr >> 2][7:0]) : out_byte;
-    assign M_LED = {memory[mem_addr >> 2][1:0], out_byte};
+    //assign M_LED = {memory[mem_addr >> 2][1:0], out_byte};
+    assign M_LED = {1'b0, resetn, out_byte};
 
     picorv32 
     #(
@@ -45,13 +42,77 @@ module system (
         .mem_addr    (mem_addr    ),
         .mem_wdata   (mem_wdata   ),
         .mem_wstrb   (mem_wstrb   ),
-        .mem_rdata   (mem_rdata   ),
-        .mem_la_read (mem_la_read ),
-        .mem_la_write(mem_la_write),
-        .mem_la_addr (mem_la_addr ),
-        .mem_la_wdata(mem_la_wdata),
-        .mem_la_wstrb(mem_la_wstrb)
+        .mem_rdata   (mem_rdata   )
     );
+
+    //reg [7:0] uart_tx_axi_tdata;
+    //reg uart_tx_axi_tvalid;
+    //wire uart_tx_axi_tready;
+
+    //wire [7:0] uart_rx_axi_tdata;
+    //wire uart_rx_axi_tvalid;
+    //reg uart_rx_axi_tready;
+
+    //uart u(.clk(clk), .rst(~resetn),
+        //// axi input
+        //.input_axis_tdata(uart_tx_axi_tdata),
+        //.input_axis_tvalid(uart_tx_axi_tvalid),
+        //.input_axis_tready(uart_tx_axi_tready),
+        //// axi output
+        //.output_axis_tdata(uart_rx_axi_tdata),
+        //.output_axis_tvalid(uart_rx_axi_tvalid),
+        //.output_axis_tready(uart_rx_axi_tready),
+        //// uart
+        //.rxd(uart_rxd),
+        //.txd(uart_txd),
+        //// status
+        //.tx_busy(),
+        //.rx_busy(),
+        //.rx_overrun_error(),
+        //.rx_frame_error(),
+        //// configuration
+        //.prescale(52) // 115200 baud (calculate by clkf/(baud*8) = 48000000/(115200*8) )
+    //);
+
+    //reg [7:0] rx_data;
+    //reg [7:0] tx_data;
+
+    //always@(posedge clk)
+    //begin
+        //if (~resetn)
+        //begin
+            //rx_data <= 0;
+            //tx_data <= 0;
+            //uart_tx_axi_tvalid <= 0;
+            //uart_tx_axi_tdata <= 0;
+        //end
+        //else
+        //begin
+            //rx_data <= rx_data;
+            //tx_data <= tx_data;
+
+            //if (uart_rx_axi_tvalid)
+            //begin
+                //rx_data <= uart_rx_axi_tdata;
+            //end
+
+            //if (uart_tx_axi_tready)
+            //begin
+                //uart_tx_axi_tvalid <= 1 & (~M_PUSHSW[0]);
+                //uart_tx_axi_tdata <= 8'h41;
+            //end
+            //else
+            //begin
+                //uart_tx_axi_tdata <= 0;
+                //uart_tx_axi_tvalid <= 0;
+            //end
+        //end
+    //end
+
+    //always@*
+    //begin
+        //uart_rx_axi_tready = 1;
+    //end
 
 	reg [31:0] memory [0:MEM_SIZE-1];
 	initial $readmemh("firmware.hex", memory);
@@ -59,45 +120,31 @@ module system (
 	reg [31:0] m_read_data;
 	reg m_read_en;
 
-	generate if (FAST_MEMORY) begin
-		always @(posedge clk) begin
-			mem_ready <= 1;
-			out_byte_en <= 0;
-			mem_rdata <= memory[mem_la_addr >> 2];
-			if (mem_la_write && (mem_la_addr >> 2) < MEM_SIZE) begin
-				if (mem_la_wstrb[0]) memory[mem_la_addr >> 2][ 7: 0] <= mem_la_wdata[ 7: 0];
-				if (mem_la_wstrb[1]) memory[mem_la_addr >> 2][15: 8] <= mem_la_wdata[15: 8];
-				if (mem_la_wstrb[2]) memory[mem_la_addr >> 2][23:16] <= mem_la_wdata[23:16];
-				if (mem_la_wstrb[3]) memory[mem_la_addr >> 2][31:24] <= mem_la_wdata[31:24];
-			end
-			else
-			if (mem_la_write && mem_la_addr == 32'h1000_0000) begin
-				out_byte_en <= 1;
-				out_byte <= mem_la_wdata;
-			end
-		end
-    end else begin
-        always @(posedge clk) begin
-            m_read_en <= 0;
-            mem_ready <= mem_valid && !mem_ready && m_read_en;
+    always @(posedge clk) begin
+        m_read_en <= 0;
+        mem_ready <= mem_valid && !mem_ready && m_read_en;
 
-            m_read_data <= memory[mem_addr >> 2];
-            mem_rdata <= m_read_data;
+        m_read_data <= memory[mem_addr >> 2];
+        mem_rdata <= m_read_data;
 
-            out_byte_en <= 0;
-            out_byte <= out_byte;
+        out_byte_en <= 0;
+        out_byte <= out_byte;
 
-            if (mem_valid && !mem_ready && !mem_wstrb && (mem_addr >> 2) < MEM_SIZE) 
-            begin
-                m_read_en <= 1;
-            end
-            if (mem_valid && !mem_ready && |mem_wstrb && (mem_addr >> 2) < MEM_SIZE)
-            begin
-                if (mem_wstrb[0]) memory[mem_addr >> 2][ 7: 0] <= mem_wdata[ 7: 0];
-                if (mem_wstrb[1]) memory[mem_addr >> 2][15: 8] <= mem_wdata[15: 8];
-                if (mem_wstrb[2]) memory[mem_addr >> 2][23:16] <= mem_wdata[23:16];
-                if (mem_wstrb[3]) memory[mem_addr >> 2][31:24] <= mem_wdata[31:24];
-                mem_ready <= 1;
+        //uart_rx_axi_tready <= 0;
+        //uart_tx_axi_tvalid <= 0;
+
+
+        if (mem_valid && !mem_ready && !mem_wstrb && (mem_addr >> 2) < MEM_SIZE) 
+        begin
+            m_read_en <= 1;
+        end
+        if (mem_valid && !mem_ready && |mem_wstrb && (mem_addr >> 2) < MEM_SIZE)
+        begin
+            if (mem_wstrb[0]) memory[mem_addr >> 2][ 7: 0] <= mem_wdata[ 7: 0];
+            if (mem_wstrb[1]) memory[mem_addr >> 2][15: 8] <= mem_wdata[15: 8];
+            if (mem_wstrb[2]) memory[mem_addr >> 2][23:16] <= mem_wdata[23:16];
+            if (mem_wstrb[3]) memory[mem_addr >> 2][31:24] <= mem_wdata[31:24];
+            mem_ready <= 1;
         end
         if (mem_valid && !mem_ready && |mem_wstrb && mem_addr == 32'h1000_0000)
         begin
@@ -105,6 +152,24 @@ module system (
             out_byte <= mem_wdata;
             mem_ready <= 1;
         end
+        //if (mem_valid && !mem_ready && mem_addr == 32'h2000_0000)
+        //begin
+            //if (|mem_wstrb)
+            //begin
+                //// write
+                //mem_ready <= 1;
+                //uart_tx_axi_tdata <= mem_wdata;
+                //uart_tx_axi_tvalid <= 1;
+            //end
+            //else
+            //begin
+                ////read
+                //mem_ready <= uart_rx_axi_tvalid;
+                //mem_rdata <= uart_rx_axi_tdata;
+                //uart_rx_axi_tready <= 1;
+            //end
+        //end
+
     end
-    end endgenerate
+
 endmodule

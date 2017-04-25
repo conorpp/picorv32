@@ -6,20 +6,17 @@ XILINX=/opt/Xilinx/14.7/ISE_DS/ISE
 PROJECT=system
 TARGET_PART=xc6slx75-3-csg484
 UCF_NAME=pins.ucf
-VSOURCE=../../../picorv32.v system.v
+VSOURCE=../../../picorv32.v system.v uart/uart.v uart/uart_tx.v uart/uart_rx.v
 ##
 
 
-all: firmware.hex
+all: firmware.hex system.bit
 
 firmware.hex: firmware.S firmware.c firmware.lds
 	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o firmware.elf firmware.S firmware.c \
 		 --std=gnu99 -Wl,-Bstatic,-T,firmware.lds,-Map,firmware.map,--strip-debug -lgcc
 	$(TOOLCHAIN_PREFIX)objcopy -O binary firmware.elf firmware.bin
 	python3 ../../../firmware/makehex.py firmware.bin 4096 > firmware.hex
-
-clean:
-	rm -f firmware.hex
 
 
 
@@ -84,7 +81,7 @@ endif
 TEST_NAMES = $(foreach file,$(VTEST) $(VHDTEST),$(basename $(file)))
 TEST_EXES = $(foreach test,$(TEST_NAMES),build/isim_$(test)$(EXE))
 
-RUN = @echo -ne "\n\n\e[1;33m======== $(1) ========\e[m\n\n"; \
+RUN = echo -ne "\n\n\e[1;33m======== $(1) ========\e[m\n\n"; \
 	cd build && $(XILINX)/bin/$(XILINX_PLATFORM)/$(1)
 
 # isim executables don't work without this
@@ -97,8 +94,8 @@ export XILINX
 
 default: $(BITFILE)
 
-#clean:
-	#rm -rf build
+clean:
+	rm -rf build firmware.hex
 
 build/$(PROJECT).prj: 
 	echo "Updating $@"
@@ -127,7 +124,7 @@ build/$(PROJECT).scr: build/$(PROJECT).prj
 	    "-p $(TARGET_PART)" \
 	    > build/$(PROJECT).scr
 
-$(BITFILE): $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr
+$(BITFILE): $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr firmware.hex
 	@mkdir -p build
 	$(call RUN,xst) $(COMMON_OPTS) \
 	    -ifn $(PROJECT).scr
