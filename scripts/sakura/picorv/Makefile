@@ -1,5 +1,9 @@
 
 # change these as appropriate
+
+# program space for program
+PROG_SIZE=15984
+
 TOOLCHAIN_PREFIX=/opt/riscv32i/bin/riscv32-unknown-elf-
 
 XILINX=/opt/Xilinx/14.7/ISE_DS/ISE
@@ -10,7 +14,14 @@ VSOURCE=../../../picorv32.v system.v uart/uart.v uart/uart_tx.v uart/uart_rx.v
 ##
 
 
-all: firmware.hex system.bit
+all: bootloader.hex firmware.hex system.bit
+
+
+bootloader.hex: firmware.S bootloader.c bootloader.lds
+	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -DPROG_SIZE=$(PROG_SIZE) -o bootloader.elf firmware.S bootloader.c \
+		 --std=gnu99 -Wl,-Bstatic,-T,bootloader.lds,-Map,bootloader.map,--strip-debug -lgcc
+	$(TOOLCHAIN_PREFIX)objcopy -O binary bootloader.elf bootloader.bin
+	python3 ../../../firmware/makehex.py bootloader.bin 4096 > bootloader.hex
 
 firmware.hex: firmware.S firmware.c firmware.lds
 	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o firmware.elf firmware.S firmware.c \
@@ -95,7 +106,7 @@ export XILINX
 default: $(BITFILE)
 
 clean:
-	rm -rf build firmware.hex
+	rm -rf build firmware.hex bootloader.hex
 
 build/$(PROJECT).prj: 
 	echo "Updating $@"

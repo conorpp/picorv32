@@ -62,11 +62,11 @@ NET "M_PUSHSW<1>"          LOC="E3"   | IOSTANDARD="LVCMOS25" | TIG ; # IO_L48P_
 # User Header Pin
 # ---------------
 #NET "M_HEADER<0>"          LOC="A4"   | IOSTANDARD="LVCMOS25" ; # IO_L1N_VREF_0
-#NET "uart_txd"          LOC="A4"   | IOSTANDARD="LVCMOS25" ; # IO_L1N_VREF_0
-NET "trap"          LOC="A4"   | IOSTANDARD="LVCMOS25" ; # IO_L1N_VREF_0
+NET "uart_txd"          LOC="A4"   | IOSTANDARD="LVCMOS25" ; # IO_L1N_VREF_0
+#NET "trap"          LOC="A4"   | IOSTANDARD="LVCMOS25" ; # IO_L1N_VREF_0
 #NET "M_HEADER<1>"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
-#NET "uart_rxd"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
-NET "out_byte_en"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
+NET "uart_rxd"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
+#NET "out_byte_en"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
 #NET "M_HEADER<2>"          LOC="B6"   | IOSTANDARD="LVCMOS25" ; # IO_L4P_0
 #NET "M_HEADER<3>"          LOC="A6"   | IOSTANDARD="LVCMOS25" ; # IO_L4N_0
 #NET "M_HEADER<4>"          LOC="A7"   | IOSTANDARD="LVCMOS25" ; # IO_L5N_0
