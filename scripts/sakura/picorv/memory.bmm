@@ -1,0 +1,12 @@
+ADDRESS_SPACE Mram_memory RAMB16 [0x00:0x3FFF]
+    BUS_BLOCK
+        Mram_memory2 [31:28];
+        Mram_memory1 [27:24];
+        Mram_memory4 [23:20];
+        Mram_memory3 [19:16];
+        Mram_memory6 [15:12];
+        Mram_memory5 [11:8];
+        Mram_memory8 [7:4];
+        Mram_memory7 [3:0];
+    END_BUS_BLOCK;
+END_ADDRESS_SPACE; 

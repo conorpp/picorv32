@@ -10,25 +10,20 @@ XILINX=/opt/Xilinx/14.7/ISE_DS/ISE
 PROJECT=system
 TARGET_PART=xc6slx75-3-csg484
 UCF_NAME=pins.ucf
+BMM_NAME=memory.bmm
 VSOURCE=../../../picorv32.v system.v uart/uart.v uart/uart_tx.v uart/uart_rx.v
 ##
 
 
-all: bootloader.hex firmware.hex system.bit
+all: firmware.hex system.bit
 
-
-bootloader.hex: firmware.S bootloader.c bootloader.lds
-	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -DPROG_SIZE=$(PROG_SIZE) -o bootloader.elf firmware.S bootloader.c \
-		 --std=gnu99 -Wl,-Bstatic,-T,bootloader.lds,-Map,bootloader.map,--strip-debug -lgcc
-	$(TOOLCHAIN_PREFIX)objcopy -O binary bootloader.elf bootloader.bin
-	python3 ../../../firmware/makehex.py bootloader.bin 4096 > bootloader.hex
 
 firmware.hex: firmware.S firmware.c firmware.lds
 	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o firmware.elf firmware.S firmware.c \
 		 --std=gnu99 -Wl,-Bstatic,-T,firmware.lds,-Map,firmware.map,--strip-debug -lgcc
 	$(TOOLCHAIN_PREFIX)objcopy -O binary firmware.elf firmware.bin
 	python3 ../../../firmware/makehex.py firmware.bin 4096 > firmware.hex
-
+	cd build/ && bitgen -bd ../firmware.elf system.ncd system.bit -w
 
 
 ###########################################################################
@@ -53,7 +48,7 @@ BITFILE         ?= build/$(PROJECT).bit
 
 COMMON_OPTS     ?= -intstyle xflow
 XST_OPTS        ?=
-NGDBUILD_OPTS   ?=
+NGDBUILD_OPTS   ?= -bm ../$(BMM_NAME)
 MAP_OPTS        ?=
 PAR_OPTS        ?=
 BITGEN_OPTS     ?=
@@ -135,7 +130,7 @@ build/$(PROJECT).scr: build/$(PROJECT).prj
 	    "-p $(TARGET_PART)" \
 	    > build/$(PROJECT).scr
 
-$(BITFILE): $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr firmware.hex
+$(BITFILE): $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr
 	@mkdir -p build
 	$(call RUN,xst) $(COMMON_OPTS) \
 	    -ifn $(PROJECT).scr
@@ -157,7 +152,7 @@ $(BITFILE): $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJECT).scr 
 ###########################################################################
 
 ifeq ($(PROGRAMMER), impact)
-prog: $(BITFILE)
+prog: $(BITFILE) firmware.hex
 	impact $(IMPACT_OPTS)
 endif
 
