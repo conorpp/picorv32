@@ -68,6 +68,7 @@ NET "uart_txd"          LOC="A4"   | IOSTANDARD="LVCMOS25" ; # IO_L1N_VREF_0
 NET "uart_rxd"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
 #NET "out_byte_en"          LOC="A5"   | IOSTANDARD="LVCMOS25" ; # IO_L2N_0
 #NET "M_HEADER<2>"          LOC="B6"   | IOSTANDARD="LVCMOS25" ; # IO_L4P_0
+NET "trigger"          LOC="B6"   | IOSTANDARD="LVCMOS25" ; # IO_L4P_0
 #NET "M_HEADER<3>"          LOC="A6"   | IOSTANDARD="LVCMOS25" ; # IO_L4N_0
 #NET "M_HEADER<4>"          LOC="A7"   | IOSTANDARD="LVCMOS25" ; # IO_L5N_0
 #NET "M_HEADER<5>"          LOC="B8"   | IOSTANDARD="LVCMOS25" ; # IO_L6P_0

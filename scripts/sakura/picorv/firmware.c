@@ -34,6 +34,8 @@ void put_message(uint8_t * src)
     int i;
     for (i = 0; i < 17; i++)
     {
+        while((*(volatile char *)0x20000080) == 0)
+        {}
         putc(src[i]);
     }
 }
@@ -46,6 +48,8 @@ void put_message(uint8_t * src)
 #define CMD_OKAY    4
 #define CMD_ERROR   'A'
 
+#define TRIGGER (*(volatile uint32_t*)0x200000a0)
+
 void main()
 {
     uint8_t msg[17];
@@ -55,6 +59,9 @@ void main()
     uint8_t ct[16];
 
     uint8_t ret;
+
+    TRIGGER = 0;
+    int k;
 
     while(1)
     {
@@ -73,6 +80,22 @@ void main()
             case CMD_RUN:
                 // run
                 ret = CMD_CT;
+                TRIGGER = 0xffffffff;
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                for (k=0; k < 5000; k++)
+                {
+                    asm("nop");
+                }
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                asm("nop");
+                TRIGGER = 0;
                 break;
             default:
                 ret = CMD_ERROR;

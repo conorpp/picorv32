@@ -9,7 +9,8 @@ module system (
 	output           trap,
 	output reg [7:0] out_byte,
 	output reg       out_byte_en,
-    output [9:0] M_LED
+    output [9:0] M_LED,
+    output trigger
 );
 	// set this to 0 for better timing but less performance/MHz
 	parameter FAST_MEMORY = 0;
@@ -25,9 +26,10 @@ module system (
 	wire [3:0] mem_wstrb;
 	reg [31:0] mem_rdata;
 
-    //wire [7:0] outb = (M_PUSHSW[0] == 1) ? (memory[mem_addr >> 2][7:0]) : out_byte;
+    reg [31:0] gpio;
+
     assign M_LED = {memory[mem_addr >> 2][1:0], out_byte};
-    //assign M_LED = {1'b0, resetn, out_byte};
+    assign trigger = gpio[0];
 
     picorv32 
     #(
@@ -142,6 +144,13 @@ module system (
                 //read TX ready signal
                 mem_ready <= 1;
                 mem_rdata <= uart_tx_axi_tready;
+        end
+
+        if (mem_valid && !mem_ready && mem_addr == 32'h2000_00a0)
+        begin
+                mem_ready <= 1;
+                //mem_rdata <= gpio;
+                gpio <= mem_wdata;
         end
 
     end
