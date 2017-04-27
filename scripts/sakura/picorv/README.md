@@ -3,7 +3,9 @@
 
 Runs on main fpga.
 
-UART pins RX/TX on Header pins 2/1, respectively.
+UART pins RX and TX on Header pins 2 and 1, respectively.
+
+Trigger is on Header pin 3.
 
 ## How to use
 
@@ -14,7 +16,7 @@ Run
 ```bash
 make default    # build bitfile
 make            # build firmware and update bitfile with firmware
-make prog       # program FPGA
+make prog       # program FPGA.  Make sure programming cable is plugged in.
 ```
 
 
