@@ -1,3 +1,13 @@
+SCA / FI on Sakura
+==================
+
+To compile code for RISC-V, you will need to install the compilers.  They are normally built
+from source, so it will take a while.  See instructions in this README below.
+
+- [Building a pure RV32I Toolchain](#building-a-pure-rv32i-toolchain)
+
+Then you are ready to build and compile the RISC-V for Sakura.  See README in `scripts/sakura/picorv`.
+
 
 PicoRV32 - A Size-Optimized RISC-V CPU
 ======================================
