@@ -12,6 +12,11 @@ TARGET_PART=xc6slx75-3-csg484
 UCF_NAME=pins.ucf
 BMM_NAME=memory.bmm
 VSOURCE=../../../picorv32.v system.v uart/uart.v uart/uart_tx.v uart/uart_rx.v
+
+INCLUDE=aes128/
+CFLAGS= -Os -ffreestanding -nostdlib -I$(INCLUDE)
+LFLAGS= --std=gnu99 -Wl,-Bstatic,-T,firmware.lds,-Map,firmware.map,--strip-debug -lgcc
+CFILES=firmware.S firmware.c aes128/aes.c mystdlib.c
 ##
 
 
@@ -19,8 +24,7 @@ all: firmware.hex system.bit
 
 
 firmware.hex: firmware.S firmware.c firmware.lds
-	$(TOOLCHAIN_PREFIX)gcc -Os -ffreestanding -nostdlib -o firmware.elf firmware.S firmware.c \
-		 --std=gnu99 -Wl,-Bstatic,-T,firmware.lds,-Map,firmware.map,--strip-debug -lgcc
+	$(TOOLCHAIN_PREFIX)gcc $(CFLAGS) -o firmware.elf $(CFILES) $(LFLAGS)
 	$(TOOLCHAIN_PREFIX)objcopy -O binary firmware.elf firmware.bin
 	python3 ../../../firmware/makehex.py firmware.bin 4096 > firmware.hex
 	cd build/ && bitgen -bd ../firmware.elf system.ncd system.bit -w
