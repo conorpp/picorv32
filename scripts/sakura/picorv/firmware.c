@@ -52,7 +52,7 @@ static void test_encrypt_ecb(void)
     AES128_ECB_encrypt(in, key, buffer, 1, 1);
     AES128_ECB_encrypt(in, key, buffer, 1, 0);
 
-    puts("ECB encrypt: ");
+    /*puts("ECB encrypt: ");*/
 
     if(0 == memcmp((char*) out, (char*) buffer, 16))
     {
@@ -64,6 +64,10 @@ static void test_encrypt_ecb(void)
     }
 }
 
+void echo(int i)
+{
+    putc(getc() + i);
+}
 
 #define CMD_PT          0
 #define CMD_KEY         1
@@ -83,18 +87,29 @@ void main()
     uint8_t pt[16];
     uint8_t key[16];
     uint8_t ct[16];
+    uint8_t rng[16];
+    uint8_t key2[16];
 
     uint8_t masked = 0;
 
     uint8_t ret = CMD_ERROR;
 
+    /*while(1) echo(masked++);*/
+    /*while(1) puts("hello world\r\n");*/
+
     TRIGGER = 0;
     test_encrypt_ecb();
-    int k;
+    memset(rng,0,sizeof(rng));
+
+    int i, k;
 
     while(1)
     {
+        // get RNG here
+        
+        //
         get_message(msg);
+        memmove(key, key2, 16);
 
         switch(msg[0])
         {
@@ -103,22 +118,104 @@ void main()
                 ret = CMD_OKAY;
                 break;
             case CMD_KEY:
-                memmove(key, msg + 1, 16);
+                /*memmove(key, msg + 1, 16);*/
+                /*memmove(key2, msg + 1, 16);*/
 
-                // runs key expansion and returns
-                AES128_ECB_encrypt(pt, key, ct, masked, 1);
+                /*// runs key expansion and returns*/
+                /*AES128_ECB_encrypt(pt, key, ct, masked, 1);*/
 
                 ret = CMD_OKAY;
                 break;
             case CMD_RUN:
                 // run
-                TRIGGER = 0xffffffff;
+                if (1)
+                {
+                    RNG = rng;
+                    TRIGGER = 0xffffffff;
 
-                // runs encryption, no key expansion
-                AES128_ECB_encrypt(pt, key, ct, masked, 0);
-                memmove(reply + 1, ct, 16);
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
 
-                TRIGGER = 0;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+
+
+
+
+                    for (i = 0; i < 16; i++)
+                    {
+                        pt[i] ^= rng[i];
+                    }
+
+                    /*asm("inf:");*/
+                    /*asm("j inf");*/
+
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+
+
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 1;
+                    TRIGGER = 0xffffffff;
+
+
+
+
+                    i = 1;
+                    AES128_ECB_encryptm(pt, key, ct, masked, 0);
+                    memmove(reply + 1, ct, 16);
+                    TRIGGER = 0;
+
+                }
+                else
+                {
+                    TRIGGER = 0xffffffff;
+                    AES128_ECB_encrypt(pt, key, ct, masked, 0);
+                    memmove(reply + 1, ct, 16);
+                    TRIGGER = 0;
+                }
+ 
                 ret = CMD_CT;
 
                 break;

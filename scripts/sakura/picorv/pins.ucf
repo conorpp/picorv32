@@ -10,8 +10,8 @@
 # ------------------------------------------------------------------------
 
 # Timing -----------------------------------------------------------------
-NET "clk" TNM_NET = "CLK_OSC_GRP" ;
-TIMESPEC "TS_CLK_OSC" = PERIOD : "CLK_OSC_GRP" : 48 MHz HIGH 50.0% ;
+#NET "clk" TNM_NET = "CLK_OSC_GRP" ;
+TIMESPEC "TS_CLK_OSC" = PERIOD : "CLK_OSC_GRP" : 25 MHz HIGH 50.0% ;
 
 # Pin --------------------------------------------------------------------
 # ------------
@@ -21,7 +21,9 @@ TIMESPEC "TS_CLK_OSC" = PERIOD : "CLK_OSC_GRP" : 48 MHz HIGH 50.0% ;
 NET "clk"            LOC="J1"   | IOSTANDARD="LVCMOS25" ;                        # IO_L41N_GCLK26_M3DQ5_3
 #NET "M_CLK_INH_B"          LOC="M1"   | IOSTANDARD="LVCMOS25" | SLEW="QUIETIO" | TIG ; # IO_L38N_M3DQ3_3
 #NET "M_CLK_EXT0_N"         LOC="P3"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43N_GCLK22_IRDY2_M3CASN_3
+NET "trigger_sma"         LOC="P3"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43N_GCLK22_IRDY2_M3CASN_3
 #NET "M_CLK_EXT0_P"         LOC="N4"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43P_GCLK23_M3RASN_3
+#NET "clk"         LOC="N4"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43P_GCLK23_M3RASN_3
 #NET "M_RESET_B"            LOC="A2"   | IOSTANDARD="LVCMOS25" | TIG ;                  # IO_L83N_VREF_3
 NET "resetn"            LOC="A2"   | IOSTANDARD="LVCMOS25" | TIG ;                  # IO_L83N_VREF_3
 
@@ -42,8 +44,8 @@ NET "M_LED<9>"             LOC="V2"   | IOSTANDARD="LVCMOS25" | SLEW="QUIETIO" |
 # ----------------
 # User Push Switch
 # ----------------
-NET "M_PUSHSW<0>"          LOC="D3"   | IOSTANDARD="LVCMOS25" | TIG ; # IO_L81N_3
-#NET "reset_button"          LOC="D3"   | IOSTANDARD="LVCMOS25" | TIG ; # IO_L81N_3
+#NET "M_PUSHSW<0>"          LOC="D3"   | IOSTANDARD="LVCMOS25" | TIG ; # IO_L81N_3
+NET "reset_btn"          LOC="D3"   | IOSTANDARD="LVCMOS25" | TIG ; # IO_L81N_3
 NET "M_PUSHSW<1>"          LOC="E3"   | IOSTANDARD="LVCMOS25" | TIG ; # IO_L48P_M3BA0_3
 
 # ---------------
@@ -72,12 +74,17 @@ NET "trigger"          LOC="B6"   | IOSTANDARD="LVCMOS25" ; # IO_L4P_0
 #NET "M_HEADER<3>"          LOC="A6"   | IOSTANDARD="LVCMOS25" ; # IO_L4N_0
 #NET "M_HEADER<4>"          LOC="A7"   | IOSTANDARD="LVCMOS25" ; # IO_L5N_0
 #NET "M_HEADER<5>"          LOC="B8"   | IOSTANDARD="LVCMOS25" ; # IO_L6P_0
+NET "reset_ext"          LOC="B8"   | IOSTANDARD="LVCMOS25" ; # IO_L6N_0
 #NET "M_HEADER<6>"          LOC="A8"   | IOSTANDARD="LVCMOS25" ; # IO_L6N_0
 #NET "M_HEADER<7>"          LOC="A9"   | IOSTANDARD="LVCMOS25" ; # IO_L8N_VREF_0
 #NET "M_HEADER<8>"          LOC="C5"   | IOSTANDARD="LVCMOS25" ; # IO_L2P_0
+NET "trigger2<0>"          LOC="C5"   | IOSTANDARD="LVCMOS25" ; # IO_L2P_0
 #NET "M_HEADER<9>"          LOC="C6"   | IOSTANDARD="LVCMOS25" ; # IO_L3N_0
+NET "trigger2<1>"          LOC="C6"   | IOSTANDARD="LVCMOS25" ; # IO_L3N_0
 #NET "M_HEADER<10>"         LOC="C7"   | IOSTANDARD="LVCMOS25" ; # IO_L5P_0
+NET "trigger2<2>"         LOC="C7"   | IOSTANDARD="LVCMOS25" ; # IO_L5P_0
 #NET "M_HEADER<11>"         LOC="C17"  | IOSTANDARD="LVCMOS25" ; # IO_L64P_SCP5_0
+NET "trigger2<3>"         LOC="C17"  | IOSTANDARD="LVCMOS25" ; # IO_L64P_SCP5_0
 #NET "M_HEADER<12>"         LOC="A11"  | IOSTANDARD="LVCMOS25" ; # IO_L35N_GCLK16_0
 #NET "M_HEADER<13>"         LOC="A12"  | IOSTANDARD="LVCMOS25" ; # IO_L36N_GCLK14_0
 #NET "M_HEADER<14>"         LOC="B12"  | IOSTANDARD="LVCMOS25" ; # IO_L36P_GCLK15_0

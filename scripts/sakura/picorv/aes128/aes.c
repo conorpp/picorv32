@@ -623,10 +623,21 @@ static void KeyExpansion(void)
   }
 }
 
+#define TRIGGER (*(volatile uint32_t*)0x200000a0)
 // This function adds the round key to state.
 // The round key is added to the state by an XOR function.
 static void AddRoundKey(state_t * state, uint8_t round)
 {
+        TRIGGER = 1;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 1;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 1;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 1;
+        TRIGGER = 0xffffffff;
+
+
   uint8_t i,j;
   for(i=0;i<4;++i)
   {
@@ -635,6 +646,18 @@ static void AddRoundKey(state_t * state, uint8_t round)
       (*state)[i][j] ^= RoundKey[round * Nb * 4 + i * Nb + j];
     }
   }
+
+  TRIGGER = 1;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 1;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 1;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 1;
+  TRIGGER = 0xffffffff;
+
+
+
 }
 
 // The SubBytes Function Substitutes the values in the
@@ -799,17 +822,17 @@ static void InvShiftRows(state_t * state)
   (*state)[3][3]=temp;
 }
 
+uint8_t * RNG;
 
 // Cipher is the main function that encrypts the PlainText.
-/*static void Cipherm(state_t * state)*/
-/*{*/
-  /*uint8_t round = 0;*/
-  /*uint8_t rng[] = {0x13,0x05,0x59,0x81,0x49,0xaf,0xb3,0x30,0x29,0x11,0xc4,0xbb,0x91,0xe4,0x98,0x44};*/
+static void Cipherm(state_t * state)
+{
 
-  /*state_t * statem = (state_t*)rng;*/
+  state_t * statem = (state_t*)RNG;
+  int round;
 
   /*// add "random" mask*/
-  /*int i,j;*/
+  int i,j;
   /*for (i=0; i<4; i++)*/
   /*{*/
       /*for (j=0; j<4; j++)*/
@@ -819,45 +842,45 @@ static void InvShiftRows(state_t * state)
       /*}*/
   /*}*/
 
-  /*// Add the First round key to the state before starting the rounds.*/
-  /*AddRoundKey(state,0); */
+  // Add the First round key to the state before starting the rounds.
+  AddRoundKey(state,0);
 
   
-  /*// There will be Nr rounds.*/
-  /*// The first Nr-1 rounds are identical.*/
-  /*// These Nr-1 rounds are executed in the loop below.*/
-  /*for(round = 1; round < Nr; ++round)*/
-  /*{*/
+  // There will be Nr rounds.
+  // The first Nr-1 rounds are identical.
+  // These Nr-1 rounds are executed in the loop below.
+  for(round = 1; round < Nr; ++round)
+  {
 
-    /*SubBytesm(state,statem);*/
+    SubBytesm(state,statem);
 
-    /*ShiftRows(state);*/
-    /*ShiftRows(statem);*/
+    ShiftRows(state);
+    ShiftRows(statem);
 
-    /*MixColumns(state);*/
-    /*MixColumns(statem);*/
+    MixColumns(state);
+    MixColumns(statem);
 
-    /*AddRoundKey(state,round);*/
-  /*}*/
+    AddRoundKey(state,round);
+  }
   
-  /*// The last round is given below.*/
-  /*// The MixColumns function is not here in the last round.*/
-  /*SubBytesm(state, statem);*/
+  // The last round is given below.
+  // The MixColumns function is not here in the last round.
+  SubBytesm(state, statem);
 
-  /*ShiftRows(state);*/
-  /*ShiftRows(statem);*/
+  ShiftRows(state);
+  ShiftRows(statem);
 
-  /*AddRoundKey(state,Nr);*/
+  AddRoundKey(state,Nr);
 
-  /*// remove mask*/
-  /*for (i=0; i<4; i++)*/
-  /*{*/
-      /*for (j=0; j<4; j++)*/
-      /*{*/
-          /*(*state)[i][j] ^= (*statem)[i][j];*/
-      /*}*/
-  /*}*/
-/*}*/
+  // remove mask
+  for (i=0; i<4; i++)
+  {
+      for (j=0; j<4; j++)
+      {
+          (*state)[i][j] ^= (*statem)[i][j];
+      }
+  }
+}
 
 
 // Cipher is the main function that encrypts the PlainText.
@@ -936,6 +959,30 @@ static void BlockCopy(uint8_t* output, const uint8_t* input)
 /* Public functions:                                                         */
 /*****************************************************************************/
 #if defined(ECB) && ECB
+
+void AES128_ECB_encryptm(const uint8_t* input, const uint8_t* key, uint8_t* output, int mask, int expandkey)
+{
+
+    if(expandkey)
+    {
+        Key = key;
+        KeyExpansion();
+    }
+    else
+    {
+        BlockCopy(output, input);
+
+        // The next function call encrypts the PlainText with the Key using AES algorithm.
+        /*if(mask)*/
+        /*{*/
+            /*Cipherm((state_t*)output);*/
+        /*}*/
+        /*else*/
+        /*{*/
+            Cipherm((state_t*)output);
+        /*}*/
+    }
+}
 
 
 void AES128_ECB_encrypt(const uint8_t* input, const uint8_t* key, uint8_t* output, int mask, int expandkey)

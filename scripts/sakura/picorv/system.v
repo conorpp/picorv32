@@ -3,6 +3,8 @@
 module system (
 	input            clk,
 	input            resetn,
+	input            reset_btn,
+	input            reset_ext,
 	input            [1:0]M_PUSHSW,
     input            uart_rxd,
     output           uart_txd,
@@ -10,7 +12,9 @@ module system (
 	output reg [7:0] out_byte,
 	output reg       out_byte_en,
     output [9:0] M_LED,
-    output trigger
+    output trigger,
+    output [3:0]trigger2,
+    output trigger_sma
 );
 	// set this to 0 for better timing but less performance/MHz
 	parameter FAST_MEMORY = 0;
@@ -28,15 +32,19 @@ module system (
 
     reg [31:0] gpio;
 
-    assign M_LED = {memory[mem_addr >> 2][1:0], out_byte};
+    assign M_LED = {memory[mem_addr >> 2][1:0], gpio[31:24]};
     assign trigger = gpio[0];
+    assign trigger_sma = gpio[0];
+    assign trigger2 = {4{gpio[0]}};
+
+    wire reset = ~((~resetn) | (reset_btn) | (reset_ext));
 
     picorv32 
     #(
         .ENABLE_REGS_DUALPORT(0)
     )picorv32_core (
         .clk         (clk     ),
-        .resetn      (resetn      ),
+        .resetn      (reset      ),
         .trap        (trap        ),
         .mem_valid   (mem_valid   ),
         .mem_instr   (mem_instr   ),
@@ -55,7 +63,7 @@ module system (
     wire uart_rx_axi_tvalid;
     reg uart_rx_axi_tready;
 
-    uart u(.clk(clk), .rst(~resetn),
+    uart u(.clk(clk), .rst(~reset),
         // axi input
         .input_axis_tdata(uart_tx_axi_tdata),
         .input_axis_tvalid(uart_tx_axi_tvalid),
@@ -74,6 +82,7 @@ module system (
         .rx_frame_error(),
         // configuration
         .prescale(52) // 115200 baud (calculate by clkf/(baud*8) = 48000000/(115200*8) )
+        //.prescale(27) // 115200 baud (calculate by clkf/(baud*8) = 48000000/(115200*8) )
     );
 
     reg [31:0] memory [0:MEM_SIZE-1];

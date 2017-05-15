@@ -18,7 +18,8 @@
   #define ECB 1
 #endif
 
-
+extern uint8_t * RNG;
+void AES128_ECB_encryptm(const uint8_t* input, const uint8_t* key, uint8_t* output, int mask, int expandkey);
 
 #if defined(ECB) && ECB
 
