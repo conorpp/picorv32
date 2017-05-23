@@ -628,14 +628,23 @@ static void KeyExpansion(void)
 // The round key is added to the state by an XOR function.
 static void AddRoundKey(state_t * state, uint8_t round)
 {
-        TRIGGER = 1;
+        TRIGGER = 0;
         TRIGGER = 0xffffffff;
-        TRIGGER = 1;
+        TRIGGER = 0;
         TRIGGER = 0xffffffff;
-        TRIGGER = 1;
+        TRIGGER = 0;
         TRIGGER = 0xffffffff;
-        TRIGGER = 1;
+        TRIGGER = 0;
         TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+
 
 
   uint8_t i,j;
@@ -647,14 +656,23 @@ static void AddRoundKey(state_t * state, uint8_t round)
     }
   }
 
-  TRIGGER = 1;
+  TRIGGER = 0;
   TRIGGER = 0xffffffff;
-  TRIGGER = 1;
+  TRIGGER = 0;
   TRIGGER = 0xffffffff;
-  TRIGGER = 1;
+  TRIGGER = 0;
   TRIGGER = 0xffffffff;
-  TRIGGER = 1;
+  TRIGGER = 0;
   TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+        TRIGGER = 0;
+        TRIGGER = 0xffffffff;
+
 
 
 
@@ -676,6 +694,19 @@ static void SubBytesm(state_t * state, state_t * statem)
 
 static void SubBytes(state_t * state)
 {
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+
   uint8_t i, j;
   for(i = 0; i < 4; ++i)
   {
@@ -684,6 +715,22 @@ static void SubBytes(state_t * state)
       (*state)[j][i] = getSBoxValue((*state)[j][i]);
     }
   }
+
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+  TRIGGER = 0xffffffff;
+  TRIGGER = 0x0;
+
+
+
 }
 
 // The ShiftRows() function shifts the rows in the state to the left.

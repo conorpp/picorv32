@@ -106,7 +106,7 @@ void main()
     while(1)
     {
         // get RNG here
-        
+
         //
         get_message(msg);
         memmove(key, key2, 16);
@@ -118,11 +118,12 @@ void main()
                 ret = CMD_OKAY;
                 break;
             case CMD_KEY:
-                /*memmove(key, msg + 1, 16);*/
-                /*memmove(key2, msg + 1, 16);*/
+                memmove(key, msg + 1, 16);
+                memmove(key2, msg + 1, 16);
+                memmove(reply+1, msg + 1, 16);
 
-                /*// runs key expansion and returns*/
-                /*AES128_ECB_encrypt(pt, key, ct, masked, 1);*/
+                // runs key expansion and returns
+                AES128_ECB_encrypt(pt, key, ct, masked, 1);
 
                 ret = CMD_OKAY;
                 break;
@@ -133,31 +134,31 @@ void main()
                     RNG = rng;
                     TRIGGER = 0xffffffff;
 
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
 
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
 
 
@@ -171,41 +172,43 @@ void main()
                     /*asm("inf:");*/
                     /*asm("j inf");*/
 
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
 
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
-                    TRIGGER = 1;
+
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
-                    TRIGGER = 1;
+                    TRIGGER = 0;
                     TRIGGER = 0xffffffff;
 
 
 
 
                     i = 1;
-                    AES128_ECB_encryptm(pt, key, ct, masked, 0);
+                    /*AES128_ECB_encryptm(pt, key, ct, masked, 0);*/
+                    AES128_ECB_encrypt(pt, key, ct, masked, 0);
                     memmove(reply + 1, ct, 16);
                     TRIGGER = 0;
+                    ret = CMD_CT;
 
                 }
                 else
@@ -214,6 +217,7 @@ void main()
                     AES128_ECB_encrypt(pt, key, ct, masked, 0);
                     memmove(reply + 1, ct, 16);
                     TRIGGER = 0;
+                    ret = CMD_CT;
                 }
  
                 ret = CMD_CT;
