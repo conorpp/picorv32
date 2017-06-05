@@ -1,0 +1,1 @@
+run -ifn system.prj -ofn system.ngc -ifmt mixed  -top system -ofmt NGC -p xc6slx75-3-csg484

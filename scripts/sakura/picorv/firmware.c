@@ -134,32 +134,32 @@ void main()
                     RNG = rng;
                     TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                     //TRIGGER = 0;
+                     //TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
 
 
@@ -173,32 +173,32 @@ void main()
                     /*asm("j inf");*/
 
                     TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
 
 
@@ -211,14 +211,7 @@ void main()
                     ret = CMD_CT;
 
                 }
-                else
-                {
-                    TRIGGER = 0xffffffff;
-                    AES128_ECB_encrypt(pt, key, ct, masked, 0);
-                    memmove(reply + 1, ct, 16);
-                    TRIGGER = 0;
-                    ret = CMD_CT;
-                }
+     
  
                 ret = CMD_CT;
 
