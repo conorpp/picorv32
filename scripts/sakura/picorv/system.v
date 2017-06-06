@@ -14,7 +14,8 @@ module system (
     output [9:0] M_LED,
     output trigger,
     output [3:0]trigger2,
-    output trigger_sma
+    //output trigger_sma, //Yuan:debug, stop using this sma signal
+    output           clk_out // Yuan: debug: add this singal send to J5 for clock debugging
 );
 	// set this to 0 for better timing but less performance/MHz
 	parameter FAST_MEMORY = 0;
@@ -34,8 +35,9 @@ module system (
 
     assign M_LED = {memory[mem_addr >> 2][1:0], gpio[31:24]};
     assign trigger = gpio[0];
-    assign trigger_sma = gpio[0];
+    //assign trigger_sma = gpio[0];
     assign trigger2 = {4{gpio[0]}};
+    assign clk_out = clk; //Yuan: clk_debug
 
     wire reset = ~((~resetn) | (reset_btn) | (reset_ext));
 
@@ -81,8 +83,12 @@ module system (
         .rx_overrun_error(),
         .rx_frame_error(),
         // configuration
-        .prescale(52) // 115200 baud (calculate by clkf/(baud*8) = 48000000/(115200*8) )
+        //.prescale(52) // 115200 baud (calculate by clkf/(baud*8) = 48000000/(115200*8) ) for clock frequency 48 Mhz
         //.prescale(27) // 115200 baud (calculate by clkf/(baud*8) = 48000000/(115200*8) )
+        //.prescale(1) // 115200 baud (calculate by clkf/(baud*8) = 1000000/(115200*8) ), Yuan: add clock frequency:1MHz
+        //.prescale(4) // 115200 baud (calculate by clkf/(baud*8) = 1000000/(115200*8) ), Yuan: add clock frequency:4MHz
+        // .prescale(35) // f14400 baud rate, used for 4MHz clock frequency
+        .prescale(9) // f14400 baud rate, used for 1MHz clock frequency
     );
 
     reg [31:0] memory [0:MEM_SIZE-1];

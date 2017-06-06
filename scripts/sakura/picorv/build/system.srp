@@ -71,7 +71,7 @@ Parsing module <uart_rx>.
 =========================================================================
 *                            HDL Elaboration                            *
 =========================================================================
-WARNING:HDLCompiler:1016 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 42: Port mem_la_read is not connected to this instance
+WARNING:HDLCompiler:1016 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 44: Port mem_la_read is not connected to this instance
 
 Elaborating module <system>.
 
@@ -110,7 +110,7 @@ WARNING:HDLCompiler:1308 - "/home/yuan/Desktop/picorv32/picorv32.v" Line 1815: F
 WARNING:HDLCompiler:1310 - "/home/yuan/Desktop/picorv32/picorv32.v" Line 1815: Found parallel_case directive in module picorv32. Use of parallel_case directives may cause differences between RTL and post-synthesis simulation
 WARNING:HDLCompiler:1308 - "/home/yuan/Desktop/picorv32/picorv32.v" Line 1399: Found full_case directive in module picorv32. Use of full_case directives may cause differences between RTL and post-synthesis simulation
 WARNING:HDLCompiler:1127 - "/home/yuan/Desktop/picorv32/picorv32.v" Line 1309: Assignment to dbg_rs1val ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 50: Assignment to mem_instr ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 52: Assignment to mem_instr ignored, since the identifier is never used
 
 Elaborating module <uart>.
 
@@ -129,10 +129,10 @@ WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/uar
 WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/uart/uart_rx.v" Line 118: Result of 32-bit expression is truncated to fit in 19-bit target.
 WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/uart/uart_rx.v" Line 121: Result of 32-bit expression is truncated to fit in 4-bit target.
 WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/uart/uart_rx.v" Line 133: Result of 32-bit expression is truncated to fit in 19-bit target.
-WARNING:HDLCompiler:189 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 84: Size mismatch in connection of port <prescale>. Formal port size is 16-bit while actual signal size is 32-bit.
-WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 122: Result of 32-bit expression is truncated to fit in 8-bit target.
-WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 131: Result of 32-bit expression is truncated to fit in 8-bit target.
-WARNING:HDLCompiler:552 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 45: Input port pcpi_wr is not connected on this instance
+WARNING:HDLCompiler:189 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 91: Size mismatch in connection of port <prescale>. Formal port size is 16-bit while actual signal size is 32-bit.
+WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 128: Result of 32-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:413 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 137: Result of 32-bit expression is truncated to fit in 8-bit target.
+WARNING:HDLCompiler:552 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" Line 47: Input port pcpi_wr is not connected on this instance
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -148,23 +148,23 @@ WARNING:Xst:2898 - Port 'pcpi_wr', unconnected in block instance 'picorv32_core'
 WARNING:Xst:2898 - Port 'pcpi_wait', unconnected in block instance 'picorv32_core', is tied to GND.
 WARNING:Xst:2898 - Port 'pcpi_ready', unconnected in block instance 'picorv32_core', is tied to GND.
 WARNING:Xst:647 - Input <M_PUSHSW> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <mem_la_addr> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <mem_la_wdata> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <mem_la_wstrb> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <pcpi_insn> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <pcpi_rs1> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <pcpi_rs2> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <eoi> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <trace_data> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <mem_instr> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <mem_la_read> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <mem_la_write> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <pcpi_valid> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 45: Output port <trace_valid> of the instance <picorv32_core> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 66: Output port <tx_busy> of the instance <u> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 66: Output port <rx_busy> of the instance <u> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 66: Output port <rx_overrun_error> of the instance <u> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 66: Output port <rx_frame_error> of the instance <u> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <mem_la_addr> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <mem_la_wdata> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <mem_la_wstrb> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <pcpi_insn> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <pcpi_rs1> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <pcpi_rs2> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <eoi> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <trace_data> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <mem_instr> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <mem_la_read> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <mem_la_write> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <pcpi_valid> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 47: Output port <trace_valid> of the instance <picorv32_core> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 68: Output port <tx_busy> of the instance <u> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 68: Output port <rx_busy> of the instance <u> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 68: Output port <rx_overrun_error> of the instance <u> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" line 68: Output port <rx_frame_error> of the instance <u> is unconnected or connected to loadless signal.
     Found 4096x32-bit single-port RAM <Mram_memory> for signal <memory>.
     Found 1-bit register for signal <mem_ready>.
     Found 32-bit register for signal <m_read_data>.
@@ -176,7 +176,7 @@ INFO:Xst:3210 - "/home/yuan/Desktop/picorv32/scripts/sakura/picorv/system.v" lin
     Found 8-bit register for signal <uart_tx_axi_tdata>.
     Found 32-bit register for signal <gpio>.
     Found 1-bit register for signal <m_read_en>.
-    Found 30-bit comparator greater for signal <mem_addr[31]_GND_1_o_LessThan_8_o> created at line 111
+    Found 30-bit comparator greater for signal <mem_addr[31]_GND_1_o_LessThan_8_o> created at line 117
     Summary:
 	inferred   1 RAM(s).
 	inferred 117 D-type flip-flop(s).
@@ -488,17 +488,17 @@ INFO:Xst:3225 - The RAM <Mram_memory> will be implemented as BLOCK RAM
     | Port A                                                              |
     |     aspect ratio   | 4096-word x 32-bit                  |          |
     |     mode           | write-first                         |          |
-    |     clkA           | connected to signal <clk>           | rise     |
+    |     clkA           | connected to signal <clk_out>       | rise     |
     |     weA            | connected to internal node          | high     |
     |     addrA          | connected to signal <mem_addr<13:2>> |          |
-    |     diA            | connected to signal <(_n0171,_n0170,_n0169,_n0168)> |          |
+    |     diA            | connected to signal <(_n0172,_n0171,_n0170,_n0169)> |          |
     -----------------------------------------------------------------------
     | optimization       | speed                               |          |
     -----------------------------------------------------------------------
     | Port B                                                              |
     |     aspect ratio   | 4096-word x 32-bit                  |          |
     |     mode           | write-first                         |          |
-    |     clkB           | connected to signal <clk>           | rise     |
+    |     clkB           | connected to signal <clk_out>       | rise     |
     |     addrB          | connected to signal <picorv32_core/mem_la_addr<13:2>> |          |
     |     doB            | connected to signal <M_LED>         |          |
     -----------------------------------------------------------------------
@@ -510,7 +510,7 @@ INFO:Xst:3218 - HDL ADVISOR - The RAM <picorv32_core/Mram_cpuregs> will be imple
     -----------------------------------------------------------------------
     | Port A                                                              |
     |     aspect ratio   | 32-word x 32-bit                    |          |
-    |     clkA           | connected to signal <clk>           | rise     |
+    |     clkA           | connected to signal <clk_out>       | rise     |
     |     weA            | connected to internal node          | high     |
     |     addrA          | connected to signal <picorv32_core/latched_rd> |          |
     |     diA            | connected to signal <picorv32_core/cpuregs_wrdata> |          |
@@ -649,7 +649,9 @@ WARNING:Xst:2677 - Node <u/uart_tx_inst/busy_reg> of sequential type is unconnec
 WARNING:Xst:2677 - Node <u/uart_rx_inst/frame_error_reg> of sequential type is unconnected in block <system>.
 WARNING:Xst:2677 - Node <u/uart_rx_inst/overrun_error_reg> of sequential type is unconnected in block <system>.
 WARNING:Xst:2677 - Node <u/uart_rx_inst/busy_reg> of sequential type is unconnected in block <system>.
-WARNING:Xst:1293 - FF/Latch <u/uart_rx_inst/prescale_reg_9> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <u/uart_rx_inst/prescale_reg_7> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_8> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_9> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_10> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_11> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_12> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
@@ -659,6 +661,8 @@ WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/pres
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_16> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_17> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_rx_inst/prescale_reg_18> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_tx_inst/prescale_reg_7> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_tx_inst/prescale_reg_8> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_tx_inst/prescale_reg_9> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_tx_inst/prescale_reg_10> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <u/uart_tx_inst/prescale_reg_11> has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
@@ -700,8 +704,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 732
- Flip-Flops                                            : 732
+# Registers                                            : 728
+ Flip-Flops                                            : 728
 
 =========================================================================
 
@@ -724,33 +728,33 @@ Top Level Output File Name         : system.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 2177
+# BELS                             : 2161
 #      GND                         : 1
-#      INV                         : 21
+#      INV                         : 17
 #      LUT1                        : 157
-#      LUT2                        : 124
-#      LUT3                        : 206
-#      LUT4                        : 176
-#      LUT5                        : 222
-#      LUT6                        : 564
-#      MUXCY                       : 366
+#      LUT2                        : 128
+#      LUT3                        : 205
+#      LUT4                        : 174
+#      LUT5                        : 220
+#      LUT6                        : 561
+#      MUXCY                       : 362
 #      MUXF7                       : 6
 #      VCC                         : 1
-#      XORCY                       : 333
-# FlipFlops/Latches                : 732
+#      XORCY                       : 329
+# FlipFlops/Latches                : 728
 #      FD                          : 172
 #      FDE                         : 257
 #      FDR                         : 89
-#      FDRE                        : 206
+#      FDRE                        : 202
 #      FDS                         : 8
 # RAMS                             : 15
 #      RAM32M                      : 5
 #      RAM32X1D                    : 2
 #      RAMB16BWER                  : 8
 # Clock Buffers                    : 1
-#      BUFGP                       : 1
-# IO Buffers                       : 31
-#      IBUF                        : 4
+#      BUFG                        : 1
+# IO Buffers                       : 32
+#      IBUF                        : 5
 #      OBUF                        : 27
 
 Device utilization summary:
@@ -760,17 +764,17 @@ Selected Device : 6slx75csg484-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             732  out of  93296     0%  
- Number of Slice LUTs:                 1494  out of  46648     3%  
-    Number used as Logic:              1470  out of  46648     3%  
+ Number of Slice Registers:             728  out of  93296     0%  
+ Number of Slice LUTs:                 1486  out of  46648     3%  
+    Number used as Logic:              1462  out of  46648     3%  
     Number used as Memory:               24  out of  11072     0%  
        Number used as RAM:               24
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   1590
-   Number with an unused Flip Flop:     858  out of   1590    53%  
-   Number with an unused LUT:            96  out of   1590     6%  
-   Number of fully used LUT-FF pairs:   636  out of   1590    40%  
+ Number of LUT Flip Flop pairs used:   1582
+   Number with an unused Flip Flop:     854  out of   1582    53%  
+   Number with an unused LUT:            96  out of   1582     6%  
+   Number of fully used LUT-FF pairs:   632  out of   1582    39%  
    Number of unique control sets:        37
 
 IO Utilization: 
@@ -803,7 +807,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-clk                                | BUFGP                  | 747   |
+clk                                | IBUF+BUFG              | 743   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -815,9 +819,9 @@ Timing Summary:
 Speed Grade: -3
 
    Minimum period: 6.132ns (Maximum Frequency: 163.079MHz)
-   Minimum input arrival time before clock: 7.451ns
+   Minimum input arrival time before clock: 7.429ns
    Maximum output required time after clock: 5.071ns
-   Maximum combinational path delay: No path found
+   Maximum combinational path delay: 4.372ns
 
 Timing Details:
 ---------------
@@ -826,7 +830,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
   Clock period: 6.132ns (frequency: 163.079MHz)
-  Total number of paths / destination ports: 40402 / 1515
+  Total number of paths / destination ports: 40110 / 1507
 -------------------------------------------------------------------------
 Delay:               6.132ns (Levels of Logic = 6)
   Source:            instr_rdinstr_1 (FF)
@@ -852,9 +856,9 @@ Delay:               6.132ns (Levels of Logic = 6)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 2350 / 651
+  Total number of paths / destination ports: 2338 / 647
 -------------------------------------------------------------------------
-Offset:              7.451ns (Levels of Logic = 6)
+Offset:              7.429ns (Levels of Logic = 6)
   Source:            resetn (PAD)
   Destination:       picorv32_core/decoder_trigger (FF)
   Destination Clock: clk rising
@@ -863,20 +867,20 @@ Offset:              7.451ns (Levels of Logic = 6)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            20   1.222   1.321  resetn_IBUF (resetn_IBUF)
-     LUT3:I0->O          271   0.205   2.413  resetn_reset_ext_OR_2_o1 (reset_inv)
+     IBUF:I->O            19   1.222   1.300  resetn_IBUF (resetn_IBUF)
+     LUT3:I0->O          268   0.205   2.412  resetn_reset_ext_OR_2_o1 (reset_inv)
      LUT5:I0->O            3   0.203   0.755  picorv32_core/Mmux_cpu_state[7]_mem_do_rinst_MUX_812_o12 (picorv32_core/Mmux_cpu_state[7]_mem_do_rinst_MUX_812_o11)
-     LUT5:I3->O            1   0.203   0.000  picorv32_core/alu_out_0_SW5_G (N315)
-     MUXF7:I1->O           1   0.140   0.684  picorv32_core/alu_out_0_SW5 (N303)
+     LUT5:I3->O            1   0.203   0.000  picorv32_core/alu_out_0_SW5_G (N317)
+     MUXF7:I1->O           1   0.140   0.684  picorv32_core/alu_out_0_SW5 (N305)
      LUT6:I4->O            1   0.203   0.000  picorv32_core/Mmux_cpu_state[7]_mem_do_rinst_MUX_812_o13 (picorv32_core/cpu_state[7]_mem_do_rinst_MUX_812_o)
      FD:D                      0.102          picorv32_core/decoder_trigger
     ----------------------------------------
-    Total                      7.451ns (2.278ns logic, 5.173ns route)
-                                       (30.6% logic, 69.4% route)
+    Total                      7.429ns (2.278ns logic, 5.151ns route)
+                                       (30.7% logic, 69.3% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
-  Total number of paths / destination ports: 27 / 27
+  Total number of paths / destination ports: 26 / 26
 -------------------------------------------------------------------------
 Offset:              5.071ns (Levels of Logic = 1)
   Source:            Mram_memory1 (RAM)
@@ -894,6 +898,24 @@ Offset:              5.071ns (Levels of Logic = 1)
                                        (87.2% logic, 12.8% route)
 
 =========================================================================
+Timing constraint: Default path analysis
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               4.372ns (Levels of Logic = 2)
+  Source:            clk (PAD)
+  Destination:       clk_out (PAD)
+
+  Data Path: clk to clk_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             1   1.222   0.579  clk_IBUF (clk_out_OBUF)
+     OBUF:I->O                 2.571          clk_out_OBUF (clk_out)
+    ----------------------------------------
+    Total                      4.372ns (3.793ns logic, 0.579ns route)
+                                       (86.8% logic, 13.2% route)
+
+=========================================================================
 
 Cross Clock Domains Report:
 --------------------------
@@ -909,15 +931,15 @@ clk            |    6.132|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 16.00 secs
-Total CPU time to Xst completion: 14.68 secs
+Total REAL time to Xst completion: 15.00 secs
+Total CPU time to Xst completion: 14.69 secs
  
 --> 
 
 
-Total memory usage is 402628 kilobytes
+Total memory usage is 402760 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  125 (   0 filtered)
+Number of warnings :  129 (   0 filtered)
 Number of infos    :   32 (   0 filtered)
 

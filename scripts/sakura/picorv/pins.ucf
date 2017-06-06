@@ -18,12 +18,16 @@ TIMESPEC "TS_CLK_OSC" = PERIOD : "CLK_OSC_GRP" : 25 MHz HIGH 50.0% ;
 # Clock, Reset
 # ------------
 #NET "M_CLK_OSC"            LOC="J1"   | IOSTANDARD="LVCMOS25" ;                        # IO_L41N_GCLK26_M3DQ5_3
-NET "clk"            LOC="J1"   | IOSTANDARD="LVCMOS25" ;                        # IO_L41N_GCLK26_M3DQ5_3
+# Use internal clock on board from the osillator
+#NET "clk"            LOC="J1"   | IOSTANDARD="LVCMOS25" ;                        # IO_L41N_GCLK26_M3DQ5_3
 #NET "M_CLK_INH_B"          LOC="M1"   | IOSTANDARD="LVCMOS25" | SLEW="QUIETIO" | TIG ; # IO_L38N_M3DQ3_3
 #NET "M_CLK_EXT0_N"         LOC="P3"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43N_GCLK22_IRDY2_M3CASN_3
-NET "trigger_sma"         LOC="P3"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43N_GCLK22_IRDY2_M3CASN_3
+#Yuan: clock debug, delete this signal, use the J5 for clock debugging
+NET "clk_out"         LOC="P3"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43N_GCLK22_IRDY2_M3CASN_3
+#NET "trigger_sma"         LOC="P3"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43N_GCLK22_IRDY2_M3CASN_3
 #NET "M_CLK_EXT0_P"         LOC="N4"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43P_GCLK23_M3RASN_3
-#NET "clk"         LOC="N4"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43P_GCLK23_M3RASN_3
+#Yuan: J4 is for the external clock SMA J4 for the external clock 
+NET "clk"         LOC="N4"   | IOSTANDARD="LVCMOS25" ;                        # IO_L43P_GCLK23_M3RASN_3
 #NET "M_RESET_B"            LOC="A2"   | IOSTANDARD="LVCMOS25" | TIG ;                  # IO_L83N_VREF_3
 NET "resetn"            LOC="A2"   | IOSTANDARD="LVCMOS25" | TIG ;                  # IO_L83N_VREF_3
 

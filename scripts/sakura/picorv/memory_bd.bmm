@@ -12,14 +12,14 @@
 
 ADDRESS_SPACE Mram_memory RAMB16 [0x00000000:0x00003FFF]
     BUS_BLOCK
-        Mram_memory2 RAMB16 [31:28] [0:4095] PLACED = X2Y46;
-        Mram_memory1 RAMB16 [27:24] [0:4095] PLACED = X3Y48;
-        Mram_memory4 RAMB16 [23:20] [0:4095] PLACED = X2Y54;
-        Mram_memory3 RAMB16 [19:16] [0:4095] PLACED = X2Y52;
+        Mram_memory2 RAMB16 [31:28] [0:4095] PLACED = X2Y48;
+        Mram_memory1 RAMB16 [27:24] [0:4095] PLACED = X2Y46;
+        Mram_memory4 RAMB16 [23:20] [0:4095] PLACED = X1Y52;
+        Mram_memory3 RAMB16 [19:16] [0:4095] PLACED = X2Y56;
         Mram_memory6 RAMB16 [15:12] [0:4095] PLACED = X2Y50;
-        Mram_memory5 RAMB16 [11:8] [0:4095] PLACED = X1Y48;
-        Mram_memory8 RAMB16 [7:4] [0:4095] PLACED = X2Y48;
-        Mram_memory7 RAMB16 [3:0] [0:4095] PLACED = X2Y44;
+        Mram_memory5 RAMB16 [11:8] [0:4095] PLACED = X2Y54;
+        Mram_memory8 RAMB16 [7:4] [0:4095] PLACED = X2Y52;
+        Mram_memory7 RAMB16 [3:0] [0:4095] PLACED = X3Y52;
     END_BUS_BLOCK;
 END_ADDRESS_SPACE;
 
