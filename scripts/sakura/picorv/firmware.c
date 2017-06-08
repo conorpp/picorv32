@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "aes.h"
-
+//#include <stdio.h>
 
 void putc(unsigned char c)
 {
@@ -48,6 +48,7 @@ static void test_encrypt_ecb(void)
     uint8_t in[]  = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a};
     uint8_t out[] = {0x3a, 0xd7, 0x7b, 0xb4, 0x0d, 0x7a, 0x36, 0x60, 0xa8, 0x9e, 0xca, 0xf3, 0x24, 0x66, 0xef, 0x97};
     uint8_t buffer[16];
+    //uint8_t debug[16] = {0x11, 0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11}; //Yuan, add debug message
 
     AES128_ECB_encrypt(in, key, buffer, 1, 1);
     AES128_ECB_encrypt(in, key, buffer, 1, 0);
@@ -76,7 +77,9 @@ void echo(int i)
 #define CMD_OKAY        4
 #define CMD_SET_PLAIN   5
 #define CMD_SET_MASKED  6
+#define CMD_PRINT       7 // Yuan: debug
 #define CMD_ERROR       'A'
+#define CMD_debug       'D'
 
 #define TRIGGER (*(volatile uint32_t*)0x200000a0)
 
@@ -90,12 +93,16 @@ void main()
     uint8_t rng[16];
     uint8_t key2[16];
 
+    uint8_t debug[16] = {0x11, 0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11};
+
+   // uint8_t debug[16]; //Yuan: debug for output message
+
     uint8_t masked = 0;
 
     uint8_t ret = CMD_ERROR;
 
     /*while(1) echo(masked++);*/
-    /*while(1) puts("hello world\r\n");*/
+    //while(1) puts("hello world\r\n");
 
     TRIGGER = 0;
     test_encrypt_ecb();
@@ -127,15 +134,24 @@ void main()
 
                 ret = CMD_OKAY;
                 break;
+             // Yuan: add this Output message print for instruction skip experiment
+            case CMD_PRINT: 
+
+                TRIGGER = 0xffffffff;
+                memmove(reply + 1, debug, 16);
+                ret = CMD_debug;
+                break;
+
             case CMD_RUN:
                 // run
                 if (1)
                 {
                     RNG = rng;
-                    TRIGGER = 0xffffffff;
+                    //TRIGGER = 0xffffffff;
+                    //putc ('A'); 
 
-                     //TRIGGER = 0;
-                     //TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
                     // TRIGGER = 0;
                     // TRIGGER = 0xffffffff;
                     // TRIGGER = 0;
@@ -171,6 +187,7 @@ void main()
 
                     /*asm("inf:");*/
                     /*asm("j inf");*/
+                    //put_message(debug);
 
                     TRIGGER = 0;
                     // TRIGGER = 0xffffffff;
@@ -201,12 +218,11 @@ void main()
                     // TRIGGER = 0xffffffff;
 
 
-
-
                     i = 1;
                     /*AES128_ECB_encryptm(pt, key, ct, masked, 0);*/
                     AES128_ECB_encrypt(pt, key, ct, masked, 0);
                     memmove(reply + 1, ct, 16);
+
                     TRIGGER = 0;
                     ret = CMD_CT;
 
