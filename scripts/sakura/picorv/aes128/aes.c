@@ -1030,14 +1030,14 @@ void AES128_ECB_encrypt(const uint8_t* input, const uint8_t* key, uint8_t* outpu
         BlockCopy(output, input);
 
         // The next function call encrypts the PlainText with the Key using AES algorithm.
-        /*if(mask)*/
-        /*{*/
-            /*Cipherm((state_t*)output);*/
-        /*}*/
-        /*else*/
-        /*{*/
+        if(mask)
+        {
+            Cipherm((state_t*)output);
+        }
+        else
+        {
             Cipher((state_t*)output);
-        /*}*/
+        }
     }
 }
 
