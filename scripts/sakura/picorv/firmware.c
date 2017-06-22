@@ -137,7 +137,7 @@ void main()
              // Yuan: add this Output message print for instruction skip experiment
             case CMD_PRINT: 
 
-                TRIGGER = 0xffffffff;
+                //TRIGGER = 0xffffffff;
                 memmove(reply + 1, debug, 16);
                 ret = CMD_debug;
                 break;
@@ -147,35 +147,34 @@ void main()
                 if (1)
                 {
                     RNG = rng;
-                    //TRIGGER = 0xffffffff;
-                    //putc ('A'); 
+                    //TRIGGER = 0xffffffff; 
 
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
 
 
@@ -190,39 +189,39 @@ void main()
                     //put_message(debug);
 
                     TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
 
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
-                    // TRIGGER = 0;
-                    // TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
 
 
                     i = 1;
                     /*AES128_ECB_encryptm(pt, key, ct, masked, 0);*/
                     AES128_ECB_encrypt(pt, key, ct, masked, 0);
                     memmove(reply + 1, ct, 16);
-
+                    memmove(rng, ct, 16);
                     TRIGGER = 0;
                     ret = CMD_CT;
 
