@@ -679,18 +679,18 @@ static void SubBytesm(state_t * state, state_t * statem)
 
 static void SubBytes(state_t * state)
 {
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
 
   uint8_t i, j;
   for(i = 0; i < 4; ++i)
@@ -701,18 +701,18 @@ static void SubBytes(state_t * state)
     }
   }
 
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
-  TRIGGER = 0xffffffff;
-  TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
+  // TRIGGER = 0xffffffff;
+  // TRIGGER = 0x0;
 
 
 

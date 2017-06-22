@@ -152,35 +152,36 @@ void main()
                     TRIGGER = 0;
                     TRIGGER = 0xffffffff;
                     TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
 
 
 
                     for (i = 0; i < 16; i++)
                     {
+                        //i = 0;
                         pt[i] ^= rng[i];
                     }
 
@@ -188,36 +189,34 @@ void main()
                     /*asm("j inf");*/
                     //put_message(debug);
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-
-
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
-                    TRIGGER = 0;
-                    TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
 
 
-                    i = 1;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+                    // TRIGGER = 0;
+                    // TRIGGER = 0xffffffff;
+
                     /*AES128_ECB_encryptm(pt, key, ct, masked, 0);*/
                     AES128_ECB_encrypt(pt, key, ct, masked, 0);
                     memmove(reply + 1, ct, 16);
