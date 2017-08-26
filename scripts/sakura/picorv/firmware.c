@@ -220,7 +220,27 @@ void main()
                     /*AES128_ECB_encryptm(pt, key, ct, masked, 0);*/
                     AES128_ECB_encrypt(pt, key, ct, masked, 0);
                     memmove(reply + 1, ct, 16);
+                    //-----------------------------------------------------------/
+                    // Yuan : add this marker to find the rng generator position
+                    //-----------------------------------------------------------/
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    
                     memmove(rng, ct, 16);
+
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+                    TRIGGER = 0xffffffff;
+                    TRIGGER = 0;
+
                     TRIGGER = 0;
                     ret = CMD_CT;
 

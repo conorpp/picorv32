@@ -14,7 +14,7 @@ BMM_NAME=memory.bmm
 VSOURCE=../../../picorv32.v system.v uart/uart.v uart/uart_tx.v uart/uart_rx.v
 
 INCLUDE=aes128/
-CFLAGS= -O0 -ffreestanding -nostdlib -I$(INCLUDE)
+CFLAGS= -Os -ffreestanding -nostdlib -I$(INCLUDE)
 LFLAGS= --std=gnu99 -Wl,-Bstatic,-T,firmware.lds,-Map,firmware.map,--strip-debug -lgcc
 CFILES=firmware.S firmware.c aes128/aes.c mystdlib.c
 ##
